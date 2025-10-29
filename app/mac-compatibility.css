@@ -1,0 +1,130 @@
+/* Mac-specific compatibility styles */
+
+/* Fix for Mac Safari rendering issues */
+@supports (-webkit-appearance: none) {
+  /* Safari-specific fixes */
+  .three-canvas {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  /* Fix for Safari text rendering */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Fix for Safari input styling */
+  input, select, textarea {
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+}
+
+/* Mac trackpad scroll momentum */
+@supports (scroll-behavior: smooth) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* High DPI Mac displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .three-canvas {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Mac Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+  /* Disable callout on touch devices (Mac trackpad) */
+  .three-canvas {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Fix for Safari touch events */
+  .touch-enabled {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Mac specific hover states */
+@media (hover: hover) and (pointer: fine) {
+  /* Mac trackpad hover */
+  .hover-target:hover {
+    transition: all 0.2s ease;
+  }
+}
+
+/* Mac Safari performance optimizations */
+@supports (will-change: transform) {
+  .three-canvas {
+    will-change: transform;
+  }
+  
+  .animated-element {
+    will-change: transform, opacity;
+  }
+}
+
+/* Mac Safari scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Mac Safari focus styles */
+:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Mac Safari button press effects */
+button:active {
+  transform: scale(0.98);
+  transition: transform 0.1s ease;
+}
+
+/* Mac Safari input focus */
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-color: #3b82f6;
+}
+
+/* Mac Safari animation performance */
+@media (prefers-reduced-motion: no-preference) {
+  .animate-element {
+    animation-duration: 0.3s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/* Mac Safari reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-element {
+    animation: none;
+    transition: none;
+  }
+}
